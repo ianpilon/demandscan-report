@@ -906,33 +906,47 @@ body { background-color: hsl(var(--background)); color: hsl(var(--foreground)); 
       
 <title>DemandScan - Full Analysis Report</title>
 <style>
+  html { scroll-behavior:smooth; }
+  body { padding-bottom: 4rem; }
   .site-header { background:#0f172a; color:#fff; padding:1.5rem 2rem; }
-  .site-header h1 { font-size:1.5rem; font-weight:700; margin:0; }
+  .site-header h1 { font-size:1.5rem; font-weight:700; margin:0; color:#fff; }
   .site-header p { margin:.25rem 0 0; color:#cbd5e1; font-size:.875rem; }
-  .tab-nav { position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:.5rem; padding:.75rem 2rem; background:#fff; border-bottom:1px solid #e5e7eb; box-shadow:0 1px 2px rgba(0,0,0,.04); }
-  .tab-btn { padding:.5rem 1rem; border:1px solid #e5e7eb; border-radius:9999px; background:#f8fafc; font-size:.875rem; font-weight:500; cursor:pointer; transition:all .15s; }
-  .tab-btn:hover { background:#e2e8f0; }
-  .tab-btn.active { background:#0f172a; color:#fff; border-color:#0f172a; }
+  .tab-nav-wrap { position:sticky; top:0; z-index:50; background:#1e293b; border-bottom:2px solid #0f172a; box-shadow:0 2px 8px rgba(0,0,0,.15); }
+  .tab-nav-label { display:block; padding:.5rem 2rem 0; color:#94a3b8; font-size:.75rem; font-weight:600; letter-spacing:.05em; text-transform:uppercase; }
+  .tab-nav { display:flex; flex-wrap:wrap; gap:.5rem; padding:.5rem 2rem .75rem; }
+  .tab-btn { display:inline-flex; align-items:center; gap:.5rem; padding:.6rem 1rem; border:2px solid #334155; border-radius:.5rem; background:#334155; color:#e2e8f0; font-size:.875rem; font-weight:600; cursor:pointer; transition:all .15s; }
+  .tab-btn:hover { background:#475569; border-color:#64748b; color:#fff; }
+  .tab-btn .tab-num { display:inline-flex; align-items:center; justify-content:center; width:1.5rem; height:1.5rem; border-radius:9999px; background:rgba(255,255,255,.15); color:#fff; font-size:.75rem; font-weight:700; }
+  .tab-btn.active { background:#3b82f6; border-color:#60a5fa; color:#fff; box-shadow:0 0 0 2px rgba(59,130,246,.25); }
+  .tab-btn.active .tab-num { background:#fff; color:#1d4ed8; }
   .tab-panel { display:none; }
   .tab-panel.active { display:block; }
-  @media print { .tab-nav { display:none; } .tab-panel { display:block !important; page-break-after:always; } }
+  .page-foot-nav { display:flex; align-items:center; justify-content:space-between; gap:1rem; max-width:1200px; margin:2rem auto; padding:1rem 2rem; border-top:1px solid #e5e7eb; }
+  .footnav-btn { padding:.6rem 1.25rem; border:1px solid #cbd5e1; border-radius:.5rem; background:#fff; color:#0f172a; font-size:.875rem; font-weight:600; cursor:pointer; transition:all .15s; }
+  .footnav-btn:hover:not(:disabled) { background:#0f172a; color:#fff; border-color:#0f172a; }
+  .footnav-btn:disabled { opacity:.4; cursor:not-allowed; }
+  .page-indicator { color:#64748b; font-size:.875rem; font-weight:500; }
+  @media print { .tab-nav-wrap, .page-foot-nav { display:none; } .tab-panel { display:block !important; page-break-after:always; } }
 </style>
 </head>
 <body>
 <header class="site-header">
   <h1>DemandScan Analysis</h1>
-  <p>Generated 2026-05-15 - Six-part customer research report</p>
+  <p>Generated 2026-05-15 - Six-part customer research report. Click a section below, or use Previous/Next.</p>
 </header>
-<nav class="tab-nav">
-<button class="tab-btn" data-target="jtbd">1. Primary Goal (JTBD)</button>
-<button class="tab-btn" data-target="gains">2. Desired Outcomes</button>
-<button class="tab-btn" data-target="pains">3. Pain Points</button>
-<button class="tab-btn" data-target="friction">4. Friction Analysis</button>
-<button class="tab-btn" data-target="awareness">5. Problem Awareness</button>
-<button class="tab-btn" data-target="final">6. Final Report</button>
-</nav>
+<div class="tab-nav-wrap">
+  <span class="tab-nav-label">Sections - click to switch</span>
+  <nav class="tab-nav">
+  <button type="button" class="tab-btn" data-target="jtbd" data-index="0"><span class="tab-num">1</span><span class="tab-label">Primary Goal (JTBD)</span></button>
+<button type="button" class="tab-btn" data-target="gains" data-index="1"><span class="tab-num">2</span><span class="tab-label">Desired Outcomes</span></button>
+<button type="button" class="tab-btn" data-target="pains" data-index="2"><span class="tab-num">3</span><span class="tab-label">Pain Points</span></button>
+<button type="button" class="tab-btn" data-target="friction" data-index="3"><span class="tab-num">4</span><span class="tab-label">Friction Analysis</span></button>
+<button type="button" class="tab-btn" data-target="awareness" data-index="4"><span class="tab-num">5</span><span class="tab-label">Problem Awareness</span></button>
+<button type="button" class="tab-btn" data-target="final" data-index="5"><span class="tab-num">6</span><span class="tab-label">Final Report</span></button>
+  </nav>
+</div>
 <main>
-<section class="tab-panel" id="jtbd">
+<section class="tab-panel" id="jtbd" data-index="0">
         
         
         <!-- Main content with the same styling as the app -->
@@ -983,7 +997,7 @@ body { background-color: hsl(var(--background)); color: hsl(var(--foreground)); 
     </div>
   
       </section>
-<section class="tab-panel" id="gains">
+<section class="tab-panel" id="gains" data-index="1">
         
         
         <!-- Main content with the same styling as the app -->
@@ -1034,7 +1048,7 @@ body { background-color: hsl(var(--background)); color: hsl(var(--foreground)); 
     </div>
   
       </section>
-<section class="tab-panel" id="pains">
+<section class="tab-panel" id="pains" data-index="2">
         
         
         <!-- Main content with the same styling as the app -->
@@ -1085,7 +1099,7 @@ body { background-color: hsl(var(--background)); color: hsl(var(--foreground)); 
     </div>
   
       </section>
-<section class="tab-panel" id="friction">
+<section class="tab-panel" id="friction" data-index="3">
         
         
         <!-- Main content with the same styling as the app -->
@@ -1136,7 +1150,7 @@ body { background-color: hsl(var(--background)); color: hsl(var(--foreground)); 
     </div>
   
       </section>
-<section class="tab-panel" id="awareness">
+<section class="tab-panel" id="awareness" data-index="4">
         
         
         <!-- Main content with the same styling as the app -->
@@ -1187,7 +1201,7 @@ body { background-color: hsl(var(--background)); color: hsl(var(--foreground)); 
     </div>
   
       </section>
-<section class="tab-panel" id="final">
+<section class="tab-panel" id="final" data-index="5">
         
         
         <!-- Main content with the same styling as the app -->
@@ -1239,18 +1253,44 @@ body { background-color: hsl(var(--background)); color: hsl(var(--foreground)); 
   
       </section>
 </main>
+<div class="page-foot-nav"><button type="button" id="prevBtn" class="footnav-btn">&larr; Previous</button><span id="pageIndicator" class="page-indicator"></span><button type="button" id="nextBtn" class="footnav-btn">Next &rarr;</button></div>
 <script>
-  const buttons = document.querySelectorAll('.tab-btn');
-  const panels = document.querySelectorAll('.tab-panel');
-  function activate(slug, push=true){
-    buttons.forEach(b => b.classList.toggle('active', b.dataset.target === slug));
-    panels.forEach(p => p.classList.toggle('active', p.id === slug));
-    if (push) history.replaceState(null, '', '#' + slug);
-    window.scrollTo({top:0, behavior:'instant'});
-  }
-  buttons.forEach(b => b.addEventListener('click', () => activate(b.dataset.target)));
-  const initial = (location.hash || '').replace('#','') || buttons[0].dataset.target;
-  activate(initial, false);
+  (function(){
+    const buttons = Array.from(document.querySelectorAll('.tab-btn'));
+    const panels = Array.from(document.querySelectorAll('.tab-panel'));
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const indicator = document.getElementById('pageIndicator');
+    const slugs = buttons.map(b => b.dataset.target);
+    let current = 0;
+
+    function render(){
+      buttons.forEach((b,i) => b.classList.toggle('active', i === current));
+      panels.forEach((p,i) => p.classList.toggle('active', i === current));
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === buttons.length - 1;
+      indicator.textContent = `Section ${current + 1} of ${buttons.length}`;
+    }
+    function go(i, push=true){
+      if (i < 0 || i >= buttons.length) return;
+      current = i;
+      render();
+      if (push) history.replaceState(null, '', '#' + slugs[i]);
+      window.scrollTo({top:0, behavior:'instant'});
+    }
+    buttons.forEach((b,i) => b.addEventListener('click', () => go(i)));
+    prevBtn.addEventListener('click', () => go(current - 1));
+    nextBtn.addEventListener('click', () => go(current + 1));
+    document.addEventListener('keydown', e => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 'ArrowLeft') go(current - 1);
+      if (e.key === 'ArrowRight') go(current + 1);
+    });
+
+    const hashSlug = (location.hash || '').replace('#','');
+    const idx = slugs.indexOf(hashSlug);
+    go(idx >= 0 ? idx : 0, false);
+  })();
 </script>
 </body>
 </html>
